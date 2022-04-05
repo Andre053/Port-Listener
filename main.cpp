@@ -11,6 +11,8 @@ int main(int argc, char *argv[]) {
 
 	std::cout << "Port: " << PORT << "\nBacklog: " << BACKLOG << std::endl;
 
+	std::cout << "Inet: " << AF_INET << std::endl;
+
 	Server serverInstance(PORT, BACKLOG);
 	serverInstance.run();
 

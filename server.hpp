@@ -4,7 +4,7 @@
 // Research inet protocols and lower level workings
 #include <arpa/inet.h> // gives access to inet_ntop/pton - converts binary address to string or vice versa
 #include "socket.hpp"
-#include <typeinfo>
+#include <typeinfo> // type checking for command line inputs
 
 
 class Server {
@@ -44,18 +44,14 @@ class Server {
                     << "\nSocker ID: " 
                     << this->socketId
                     << std::endl;
-
             while (1) {
                 std::cout << "\n++++++++++ Waiting for Connection +++++++++++\n\n";
-                //int x = 0;
-                //std::cin >> x;
-                //if (x != 1) break;
+                
                 listenSocket = accept(socketId, (struct sockaddr*)&address, (socklen_t*)&adressLen);
                 if (listenSocket < 0) exit(0);
                 getClientInfo(address);
                 std::cout << "Client's socket has been accepted\n" << std::endl;
 
-                // read fills clientPackage with information
                 bytesRead = read(listenSocket, clientPackage, 30000);
                 if (bytesRead < 0) exit(0);
                 std::cout << "Clients package has been read from the socket\n" 
@@ -70,8 +66,7 @@ class Server {
                 //std::cout << "\n+++++++++++++++ Response Sent +++++++++++++++\n\n" << std::endl;
 				std::cout << "+++++++++++++++++++++++++++++++++++++++++++++\n" << std::endl;
                 close(listenSocket);
-            }
-        }
+            }}
 
         void getClientInfo(struct sockaddr_in addrss) {
             char ip[INET_ADDRSTRLEN];
