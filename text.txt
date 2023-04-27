@@ -1,5 +1,7 @@
 ##### Port Listener #####
 
 - Utilizes C++ web sockets to listen on a particular port
+- IP to listen on must be an environment variable (namely IP) or is set to localhost
 - Takes command line arguments: first must be port number, second must be the maximum backlog count
+
 

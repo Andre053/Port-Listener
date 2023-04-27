@@ -12,8 +12,11 @@ class Socket {
             struct sockaddr_in address;
 
             char* ipAddress;
-            // IP address is set as an environment variable
+            
+            // IP address is set as an environment variable or set to local host
             std::string ipVariable = std::getenv("IP");
+            if (ipVariable == "") ipVariable = "127.0.0.1";
+
             ipAddress = &ipVariable[0];
 
             memset((char*)&address, 0, sizeof(address));
